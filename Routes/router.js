@@ -16,5 +16,10 @@ router.post('/user/login',userController.login)
 // add blog
 router.post('/blogs/add',jwtMiddleware,multerConfig.single('blogImage'),blogController.addBlog)
 
+// get user blog
+router.get('/user/all-blogs',jwtMiddleware,blogController.alluserBlogs)
+// get all blogs
+router.get('/blogs/all',jwtMiddleware,blogController.allBlogs)
+
 // export router
 module.exports = router
