@@ -21,5 +21,8 @@ router.get('/user/all-blogs',jwtMiddleware,blogController.alluserBlogs)
 // get all blogs
 router.get('/blogs/all',jwtMiddleware,blogController.allBlogs)
 
+// editblogs
+router.put('/blogs/edit/:id',jwtMiddleware,multerConfig.single('blogImage'),blogController.editBlogsControll)
+
 // export router
 module.exports = router

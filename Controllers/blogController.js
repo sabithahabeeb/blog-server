@@ -43,18 +43,19 @@ exports.allBlogs = async (req, res) => {
     }
 }
 
+// edit blogs
+exports.editBlogsControll = async (req, res) => {
+    const { id } = req.params
+    const { title, overview, category, blogImage } = req.body
+    const uploadImage = req.file ? req.file.filename : blogImage
+    try {
+        const updateblog = await blogs.findByIdAndUpdate({ _id: id }, {
+            title, overview, category, blogImage: uploadImage
+        }, { new: true })
+        await updateblog.save()
+        res.status(200).json(updateblog)
+    } catch (err) {
+        res.status(401).json(err)
+    }
 
-//get tech blogs
-// exports.allBlogs = async (req, res) => {
-//     const searchKey = req.query.search
-//     const query = {
-//         category: { $regex: searchKey, $option: "i" }
-//     }
-//     try {
-//         const allBlogs = await blogs.find(query)
-//         res.status(200).json(allBlogs)
-//     } catch (err) {
-//         res.status(401).json(err)
-//     }
-// }
-
+}
