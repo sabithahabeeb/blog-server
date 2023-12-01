@@ -59,3 +59,30 @@ exports.editBlogsControll = async (req, res) => {
     }
 
 }
+
+
+// delete blog
+exports.deleteBlogControll = async (req, res) => {
+    // get blog details
+    const { id } = req.params
+    try {
+        const removeblog = await blogs.findByIdAndDelete({ _id: id })
+        res.status(200).json(removeblog)
+    } catch (err) {
+        res.status(401).json(err)
+    }
+}
+
+
+
+// get view blogs
+exports.viewBlogs = async (req, res) => {
+    const blogID = req.params
+    try {
+        const viewBlogs = await blogs.findById({ blogID })
+        res.status(200).json(viewBlogs)
+
+    } catch (err) {
+        res.status(401).json(err)
+    }
+}

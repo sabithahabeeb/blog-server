@@ -23,6 +23,11 @@ router.get('/blogs/all',jwtMiddleware,blogController.allBlogs)
 
 // editblogs
 router.put('/blogs/edit/:id',jwtMiddleware,multerConfig.single('blogImage'),blogController.editBlogsControll)
+// 
+router.delete('/blog/remove/:id',jwtMiddleware,blogController.deleteBlogControll)
 
+
+// view vlog
+router.get('/blogs/view/:id',jwtMiddleware,blogController.viewBlogs)
 // export router
 module.exports = router
