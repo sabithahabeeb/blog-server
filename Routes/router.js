@@ -29,5 +29,9 @@ router.delete('/blog/remove/:id',jwtMiddleware,blogController.deleteBlogControll
 
 // view vlog
 router.get('/blogs/view/:id',jwtMiddleware,blogController.viewBlogs)
+
+
+// updateuser
+router.put('/user/update',jwtMiddleware,multerConfig.single('profileImage'),userController.editUser)
 // export router
 module.exports = router
