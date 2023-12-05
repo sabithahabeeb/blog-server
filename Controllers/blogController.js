@@ -35,8 +35,12 @@ exports.alluserBlogs = async (req, res) => {
 
 //get all blogs
 exports.allBlogs = async (req, res) => {
+    const searchKey = req.query.search
+    const query = {
+        category:{$regex:searchKey , $options:"i"}
+    }
     try {
-        const allBlogs = await blogs.find()
+        const allBlogs = await blogs.find(query)
         res.status(200).json(allBlogs)
     } catch (err) {
         res.status(401).json(err)
